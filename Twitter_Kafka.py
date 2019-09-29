@@ -33,40 +33,40 @@ class Twitter_stream(StreamListener):
     
     if __name__ == '__main__':
 
-    PROJECT_HOME = 'D://GitHub/Twitter_Monitor'
+        PROJECT_HOME = 'D://GitHub/Twitter_Monitor'
 
     #authenticate
 
-    config = ConfigParser()
+        config = ConfigParser()
 
-    config.read(PROJECT_HOME + '.config/.credentials')
+        config.read(PROJECT_HOME + '.config/.credentials')
 
-    consumer_key = config.get('auth', 'consumer_key')
+        consumer_key = config.get('auth', 'consumer_key')
 
-    consumer_secret = config.get('auth', 'consumer_secret')
+        consumer_secret = config.get('auth', 'consumer_secret')
 
-    access_token = config.get('auth', 'access_token')
+        access_token = config.get('auth', 'access_token')
 
-    access_token_secret = config.get('auth', 'access_token_secret')
+        access_token_secret = config.get('auth', 'access_token_secret')
 
 
 
-    auth = OAuthHandler(consumer_key, consumer_secret)
+        auth = OAuthHandler(consumer_key, consumer_secret)
 
-    auth.set_access_token(access_token, access_token_secret)
+        auth.set_access_token(access_token, access_token_secret)
 
-    api = API(auth)
+        api = API(auth)
 
     
 
-    stream = Stream(auth, listener=TstreamListener(api))
+        stream = Stream(auth, listener=TstreamListener(api))
 
  
 
-    tracked = []
+        tracked = []
 
-    for team in team_dict.keys():
+        for team in team_dict.keys():
 
-        tracked.extend(team_dict[team]) 
+            tracked.extend(team_dict[team]) 
 
-    stream.filter(track=tracked, languages=['en'])
+        stream.filter(track=tracked, languages=['en'])
